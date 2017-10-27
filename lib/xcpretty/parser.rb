@@ -285,6 +285,10 @@ module XCPretty
       # @regex Captured groups
       # $1 = error reason
       MODULE_INCLUDES_ERROR_MATCHER = /^\<module-includes\>:.*?:.*?:\s(?:fatal\s)?(error:\s.*)$/
+
+      # @regex Get simulator type
+      # $1 = simulator type
+      TEST_SIMULATOR_TYPE = /^\s+SimDevice: (.*)$/
     end
   end
 
@@ -417,6 +421,8 @@ module XCPretty
         formatter.format_warning($1)
       when WILL_NOT_BE_CODE_SIGNED_MATCHER
         formatter.format_will_not_be_code_signed($1)
+      when TEST_SIMULATOR_TYPE
+        formatter.format_simulator_type($1)
       else
         ""
       end
